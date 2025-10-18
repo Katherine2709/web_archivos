@@ -11,7 +11,8 @@ import {
   faBoxArchive,
   faWarehouse,
   faLock,
-  faRightFromBracket
+  faRightFromBracket,
+  faBars // 👈 ¡Nuevo ícono importado para el botón de toggle!
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -22,6 +23,10 @@ import {
   imports: [RouterModule, RouterOutlet, FontAwesomeModule],
 })
 export class NavigationComponent {
+  
+  // 🆕 Propiedad para controlar el estado de la barra lateral (abierta por defecto)
+  isSidebarOpen: boolean = true; 
+
   // ✅ Íconos
   faUser = faUser;
   faUserTie = faUserTie;
@@ -33,9 +38,15 @@ export class NavigationComponent {
   faWarehouse = faWarehouse;
   faLock = faLock;
   faRightFromBracket = faRightFromBracket;
+  faBars = faBars; // 👈 Ícono disponible en el HTML
 
   // ✅ Usuario simulado
   usuario: string = 'Victor Andres';
+
+  // 🆕 Método para alternar el estado de la barra lateral
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 
   // ✅ Método de cerrar sesión
   cerrarSesion() {

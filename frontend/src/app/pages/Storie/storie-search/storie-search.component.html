@@ -1,1 +1,141 @@
-<p>POR TRABAJAR</p>
+<div class="main-content-container">
+  <div class="botones-acciones-flotantes">
+    <button class="btn-primario" type="button">
+      <i class="fa fa-upload"></i> Exportar
+    </button>
+    <button class="btn-advertencia" type="button">
+      <i class="fa fa-download"></i> Importar
+    </button>
+  </div>
+
+  <div class="acciones-container">
+    <div class="filtros-principales">
+      <input 
+        type="text" 
+        placeholder="Buscar por N° HC, Caja o Cliente..." 
+        class="search-bar"
+      >
+      <input 
+        type="text" 
+        placeholder="Sede o Área..." 
+        class="document-filter-input"
+      >
+      <div class="date-input-wrapper">
+        <label>Desde:</label>
+        <input id="fecha-inicio" type="date">
+      </div>
+      <div class="date-input-wrapper">
+        <label>Hasta:</label>
+        <input id="fecha-fin" type="date">
+      </div>
+      <button class="btn-buscar" type="button">
+        <i class="fa fa-search"></i> Buscar
+      </button>
+    </div>
+  </div>
+
+  <div class="tabla-container">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Código QR</th>
+          <th>N° Caja</th>
+          <th>Estante</th>
+          <th>Columna</th>
+          <th>Nivel</th>
+          <th>Cliente</th>
+          <th>Sede</th>
+          <th>Área</th>
+          <th>Serie Documental</th>
+          <th>N° HC</th>
+          <th>Nombre Paciente</th>
+          <th>Tipo Archivo</th>
+          <th>Nombre Documento</th>
+          <th>Tipo de Archivo</th>
+          <th>Nombre del Archivo</th>
+          <th>Digitalizador</th>
+          <th>Fecha de Carga</th>
+          <th>Día</th>
+          <th>Mes</th>
+          <th>Año</th>
+          <th>Status</th>
+          <th>Tipo Error</th>
+          <th>Observaciones</th>
+          <th>Responsable de Revisión</th>
+          <th>Fecha de Revisión</th>
+          <th>Revisado (Sí/No)</th>
+          <th>Corregido (Sí/No)</th>
+          <th>Total de Producción</th>
+          <th>Muestra 3%</th>
+          <th>Porcentaje de Error (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>QR-0031</td>
+          <td>31</td>
+          <td>B</td>
+          <td>2</td>
+          <td>3</td>
+          <td>CJN</td>
+          <td>CLÍNICA JESÚS DEL NORTE</td>
+          <td>Archivo de Historias Clínicas</td>
+          <td>Historias Clínicas</td>
+          <td>4005120</td>
+          <td>MARÍA PÉREZ</td>
+          <td>Digital</td>
+          <td>CONSENTIMIENTO INFORMADO PARA APLICACION DE MEDICAMENTOS POR VIA INTRAMUSCULAR (IM) VIA ENDOVENOSA (EV) Y/O VIA SUBCUTANEA (SC)</td>
+          <td>PDF</td>
+          <td>HC_4005120.pdf</td>
+          <td>Juan Ramos</td>
+          <td>2025-02-05</td>
+          <td>05</td>
+          <td>02</td>
+          <td>2025</td>
+          <td>Correcto</td>
+          <td>—</td>
+          <td>Ninguna observación</td>
+          <td>Supervisor</td>
+          <td>2025-02-10</td>
+          <td>Sí</td>
+          <td>Sí</td>
+          <td>10000</td>
+          <td>300</td>
+          <td>0.001%</td>
+        </tr>
+        <tr>
+          <td>QR-0032</td>
+          <td>32</td>
+          <td>B</td>
+          <td>3</td>
+          <td>1</td>
+          <td>CJN</td>
+          <td>CLÍNICA JESÚS DEL NORTE</td>
+          <td>Archivo de Historias Clínicas</td>
+          <td>Historias Clínicas</td>
+          <td>4005189</td>
+          <td>LUIS TORRES</td>
+          <td>Digital</td>
+          <td>CONSENTIMIENTO INFORMADO PARA APLICACION DE MEDICAMENTOS POR VIA INTRAMUSCULAR (IM) VIA ENDOVENOSA (EV) Y/O VIA SUBCUTANEA (SC)</td>
+          <td>PDF</td>
+          <td>HC_4005189.pdf</td>
+          <td>Ana Salazar</td>
+          <td>2025-02-06</td>
+          <td>06</td>
+          <td>02</td>
+          <td>2025</td>
+          <td>Incorrecto</td>
+          <td>Documento ilegible</td>
+          <td>Escaneo repetido</td>
+          <td>Coordinador</td>
+          <td>2025-02-11</td>
+          <td>Sí</td>
+          <td>No</td>
+          <td>10000</td>
+          <td>300</td>
+          <td>0.002%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,229 @@
+/* --- TÓPICOS GENERALES Y TÍTULO --- */
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #F4F7FC; 
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content-container {
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 30px 40px; 
+}
+
+h2.titulo-principal {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6A1B9A; 
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* --- NUEVO: BOTONES FLOTANTES (Exportar/Importar) --- */
+.botones-acciones-flotantes {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 10px; 
+  padding-left: 0; 
+  width: 100%;
+}
+
+/* --- SECCIÓN DE ACCIONES (Contenedor blanco de filtros) --- */
+.acciones-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 30px; 
+  padding: 15px; 
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+}
+
+.filtros-principales {
+  display: flex;
+  gap: 12px;
+  flex-grow: 1; 
+  align-items: center; 
+  width: 100%;
+}
+
+/* Estilo base de Inputs */
+.search-bar, .document-filter-input, .date-input-wrapper {
+  padding: 10px 15px;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+/* Búsqueda general */
+.search-bar {
+  flex: 1.5;
+  min-width: 180px;
+}
+
+/* Filtro por documento */
+.document-filter-input {
+  flex: 2;
+  min-width: 150px;
+}
+
+/* Contenedores de fecha */
+.date-input-wrapper {
+  flex: 1; 
+  min-width: 120px;
+  padding: 0;
+  border: 1px solid #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-input-wrapper label {
+  font-weight: 600;
+  color: #4B5563;
+  font-size: 0.9rem;
+  padding-left: 10px;
+}
+
+.date-input-wrapper input {
+  border: none;
+  padding: 10px 10px; 
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: right;
+  background: transparent;
+}
+.date-input-wrapper input:focus {
+  outline: none;
+}
+
+/* Focus */
+.search-bar:focus, 
+.document-filter-input:focus,
+.date-input-wrapper:focus-within { 
+  border-color: #7B1FA2;
+  box-shadow: 0 0 5px rgba(123, 31, 162, 0.2);
+}
+
+/* --- BOTONES --- */
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; 
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+button.btn-buscar {
+  height: 40px; 
+  background-color: #E0E0E0; 
+  color: #424242; 
+  padding: 0 18px; 
+  flex-shrink: 0; 
+}
+
+button.btn-buscar:hover {
+  background-color: #CFCFCF; 
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de acción */
+.btn-primario {
+  background-color: #6A1B9A;
+  color: #fff;
+}
+.btn-primario:hover {
+  background-color: #5D1488;
+}
+
+.btn-advertencia {
+  background-color: #FFB300;
+  color: #fff;
+}
+.btn-advertencia:hover {
+  background-color: #FF8F00;
+}
+
+/* --- TABLA --- */
+.tabla-container {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow-x: auto; 
+  margin: 0 auto;
+  scrollbar-width: thin;
+  scrollbar-color: #B39DDB #F3E5F5;
+}
+
+.tabla-container::-webkit-scrollbar {
+  height: 8px;
+}
+.tabla-container::-webkit-scrollbar-thumb {
+  background-color: #B39DDB;
+  border-radius: 4px;
+}
+.tabla-container::-webkit-scrollbar-track {
+  background-color: #F3E5F5;
+}
+
+/* --- CONFIGURACIÓN DE TABLA ADAPTATIVA --- */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* ✅ Ajuste dinámico al contenido */
+  background-color: #fff;
+}
+
+/* Cabecera */
+.tabla thead th {
+  background: #7B1FA2;
+  color: white;
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Celdas */
+.tabla td {
+  padding: 10px 10px;
+  border-bottom: 1px solid #E5E7EB;
+  font-size: 0.85rem;
+  color: #4B5563;
+  text-align: center;
+  white-space: nowrap; /* ✅ evita salto de línea */
+}
+
+/* Texto largo: se mostrará completo (sin puntos suspensivos) */
+.tabla td,
+.tabla th {
+  overflow: visible; 
+  text-overflow: unset;
+}
+
+/* Zebra y hover */
+.tabla tr:nth-child(even) {
+  background-color: #F9FAFB;
+}
+.tabla tr:hover td {
+  background-color: #F3E5F5;
+  transition: background-color 0.2s ease;
+}

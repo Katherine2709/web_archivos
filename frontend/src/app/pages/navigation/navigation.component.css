@@ -1,4 +1,4 @@
-/* ===== Barra Superior ===== */
+/* ===== Barra Superior (Topbar) ===== */
 .topbar {
   width: 100%;
   height: 50px;
@@ -40,6 +40,22 @@
   font-size: 14px;
 }
 
+/* 🆕 NUEVO: Estilo para el botón de toggle (Menú Hamburguesa) */
+.btn-toggle-sidebar {
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    line-height: 1; 
+    margin-right: 5px; 
+    transition: color 0.2s ease;
+}
+.btn-toggle-sidebar:hover {
+    color: #ff6600;
+}
+
 .btn-logout {
   background-color: #ff6600; /* Naranja corporativo */
   color: white;
@@ -61,23 +77,25 @@
 /* ===== Layout Principal ===== */
 .layout {
   display: flex;
-  margin-top: 50px; /* deja espacio para la topbar fija */
+  margin-top: 50px;
   height: calc(100vh - 50px);
 }
 
 .sidebar {
-  width: 260px;
+  width: 260px; /* Ancho inicial */
   background: #fff;
   color: #333;
   box-shadow: 2px 0 8px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
-  padding-top: 0; /* ✅ elimina el espacio */
+  padding-top: 0;
   position: fixed;
   left: 0;
-  top: 50px; /* debajo de la topbar */
+  top: 50px; 
   bottom: 0;
   z-index: 10;
+  transition: width 0.3s ease; /* Transición suave al plegarse */
+  overflow-x: hidden; /* Evita barras de desplazamiento horizontales al colapsar */
 }
 
 
@@ -106,24 +124,27 @@
   padding-bottom: 6px;
   border-bottom: 1px solid #eee;
   letter-spacing: 1px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, margin 0.3s ease, height 0.3s ease;
 }
 
 .nav-list li a {
   display: flex;
   align-items: center;
-  gap: 10px; /* espacio entre ícono y texto */
+  gap: 10px;
   color: #333;
   padding: 10px 24px;
   text-decoration: none;
   font-size: 15px;
   border-radius: 6px;
   margin: 2px 8px;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, padding 0.3s;
 }
 
 .nav-list li a fa-icon {
   font-size: 18px;
   color: #710492;
+  flex-shrink: 0; /* Asegura que el ícono no se encoja */
 }
 
 .nav-list li a:hover fa-icon,
@@ -134,21 +155,64 @@
 
 .nav-list li a:hover,
 .nav-list li a.active-link {
-  background: #71049280;
+  background: #710492; 
   color: #fff;
 }
 
 .main-content {
-  margin-left: 260px;
+  margin-left: 260px; /* Margen inicial igual al ancho de la sidebar */
   padding: 32px 40px;
   width: calc(100% - 260px);
   min-height: 100vh;
   background: #f4f6fa;
   box-sizing: border-box;
-  transition: margin-left 0.3s;
+  transition: margin-left 0.3s ease, width 0.3s ease; /* Transición suave al plegarse */
 }
 
-/* Responsive para pantallas pequeñas */
+/* ---------------------------------------------- */
+/* 🚀 ESTILOS PARA LA BARRA LATERAL PLEGADA (.collapsed) */
+/* ---------------------------------------------- */
+
+/* 1. Definir el nuevo ancho de la sidebar cuando está plegada */
+.layout.collapsed .sidebar {
+    width: 60px; /* Ancho reducido */
+}
+
+/* 2. Ajustar el margen del contenido principal */
+.layout.collapsed .main-content {
+    margin-left: 60px; 
+    width: calc(100% - 60px);
+}
+
+/* 3. Ocultar el texto de los enlaces y los títulos de sección */
+.layout.collapsed .nav-list li a span {
+    display: none; /* Oculta el texto del enlace */
+}
+
+.layout.collapsed .section-title {
+    opacity: 0; /* Desvanece el título */
+    height: 0; /* Colapsa el espacio */
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+/* 4. Ajustar y centrar los íconos de los enlaces */
+.layout.collapsed .nav-list li a {
+    justify-content: center; /* Centra el ícono */
+    padding: 10px 0; /* Padding vertical, 0 horizontal */
+    margin: 2px 0; /* Reduce margen para ocupar menos espacio */
+}
+
+/* 5. Asegurar que los enlaces mantengan el hover visual */
+.layout.collapsed .nav-list li a:hover,
+.layout.collapsed .nav-list li a.active-link {
+    /* Mantiene el estilo de hover */
+    padding: 10px 0; 
+}
+
+
+/* Responsive (Mantener o ajustar según tu necesidad) */
 @media (max-width: 800px) {
   .sidebar {
     width: 180px;
@@ -160,5 +224,14 @@
   }
   .menu-title {
     font-size: 18px;
+  }
+  
+  /* Asegurar que el modo colapsado funcione también en responsive */
+  .layout.collapsed .sidebar {
+      width: 60px; 
+  }
+  .layout.collapsed .main-content {
+      margin-left: 60px; 
+      width: calc(100% - 60px);
   }
 }

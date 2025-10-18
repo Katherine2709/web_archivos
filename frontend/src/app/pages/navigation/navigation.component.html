@@ -6,13 +6,18 @@
 
   <div class="user-area">
     <span class="usuario-logueado">👤 {{ usuario }}</span>
+    
+    <button class="btn-toggle-sidebar" (click)="toggleSidebar()">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+    
     <button class="btn-logout" (click)="cerrarSesion()">
       <fa-icon [icon]="faRightFromBracket"></fa-icon> Cerrar sesión
     </button>
   </div>
 </header>
 
-<div class="layout">
+<div class="layout" [class.collapsed]="!isSidebarOpen">
   <nav class="sidebar">
     <ul class="nav-list">
       <li class="section-title">Personal</li>
@@ -34,7 +39,7 @@
       <li class="section-title">Historias</li>
 
       <li>
-        <a routerLink="storie-loans" routerLinkActive="active-link">
+        <a routerLink="storie-search" routerLinkActive="active-link">
           <fa-icon [icon]="faMagnifyingGlass" class="icon"></fa-icon>
           <span>Buscar</span>
         </a>
@@ -48,7 +53,7 @@
       </li>
 
       <li>
-        <a routerLink="storie-search" routerLinkActive="active-link">
+        <a routerLink="storie-loans" routerLinkActive="active-link">
           <fa-icon [icon]="faRotateLeft" class="icon"></fa-icon>
           <span>Devoluciones</span>
         </a>
