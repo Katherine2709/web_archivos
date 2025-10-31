@@ -1,24 +1,22 @@
 package com.archivo.backend.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
+@Entity
+@Table(name = "rol")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "rol")
 public class Rol {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "roles", nullable = false)
+    // Coincide con el nombre de la columna en la BD: 'roles'
+    @Column(name = "roles", nullable = false, unique = true, length = 30)
     private String roles;
-
-    public String getRol() {
-        return roles;
-    }
 }

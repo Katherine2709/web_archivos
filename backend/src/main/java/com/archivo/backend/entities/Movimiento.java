@@ -7,33 +7,6 @@ import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
 @Table(name = "movimiento")
 public class Movimiento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "caja_id")
-    private Caja caja;
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private NuevoUsuario usuario;
-
-    @Column(name = "tipo")
-    private String tipo;
-
-    @Column(name = "destino")
-    private String destino;
-
-    @Column(name = "fecha")
-    private LocalDateTime fecha;
-
-    @Column(name = "observaciones")
-    private String observaciones;
 }

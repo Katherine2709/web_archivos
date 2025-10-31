@@ -1,13 +1,13 @@
 package com.archivo.backend.repositories;
 
-import com.archivo.backend.entities.NuevoUsuario;
+import com.archivo.backend.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
-@Repository
-public interface UsuarioRepository extends JpaRepository<NuevoUsuario, Integer> {
-    Optional<NuevoUsuario> findByUsuario(String usuario);
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+    // Método necesario para la autenticación
+    Optional<Usuario> findByUsuario(String usuario);
+
+    // Método para validar si el nombre de usuario ya existe
     boolean existsByUsuario(String usuario);
 }

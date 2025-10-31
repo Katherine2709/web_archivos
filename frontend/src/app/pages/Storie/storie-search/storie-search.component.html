@@ -1,141 +1,107 @@
 <div class="main-content-container">
-  <div class="botones-acciones-flotantes">
-    <button class="btn-primario" type="button">
-      <i class="fa fa-upload"></i> Exportar
-    </button>
-    <button class="btn-advertencia" type="button">
-      <i class="fa fa-download"></i> Importar
-    </button>
-  </div>
 
-  <div class="acciones-container">
+  <!-- 🔍 FILTROS -->
+  <section class="acciones-container">
     <div class="filtros-principales">
-      <input 
-        type="text" 
-        placeholder="Buscar por N° HC, Caja o Cliente..." 
-        class="search-bar"
-      >
-      <input 
-        type="text" 
-        placeholder="Sede o Área..." 
-        class="document-filter-input"
-      >
+      <input type="text" placeholder="Buscar por N° HC, Caja o Paciente..." class="search-bar" />
+
+      <input type="text" placeholder="Sede o Área..." class="document-filter-input" />
+
       <div class="date-input-wrapper">
-        <label>Desde:</label>
-        <input id="fecha-inicio" type="date">
+        <label for="fecha-inicio">Desde:</label>
+        <input id="fecha-inicio" type="date" />
       </div>
+
       <div class="date-input-wrapper">
-        <label>Hasta:</label>
-        <input id="fecha-fin" type="date">
+        <label for="fecha-fin">Hasta:</label>
+        <input id="fecha-fin" type="date" />
       </div>
+
       <button class="btn-buscar" type="button">
         <i class="fa fa-search"></i> Buscar
       </button>
     </div>
+  </section>
+
+  <!-- 📋 TABLA -->
+  <section class="tabla-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+
+      <!-- N° Historia -->
+      <ng-container matColumnDef="historia">
+        <th mat-header-cell *matHeaderCellDef>N° Historia</th>
+        <td mat-cell *matCellDef="let element">{{ element.historia }}</td>
+      </ng-container>
+
+      <!-- Nombre Paciente -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre Paciente</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+      </ng-container>
+
+      <!-- Tipo Archivo -->
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo Archivo</th>
+        <td mat-cell *matCellDef="let element">{{ element.tipo }}</td>
+      </ng-container>
+
+      <!-- Nombre Documento -->
+      <ng-container matColumnDef="documento">
+        <th mat-header-cell *matHeaderCellDef>Nombre Documento</th>
+        <td mat-cell *matCellDef="let element">{{ element.documento }}</td>
+      </ng-container>
+
+      <!-- Formato -->
+      <ng-container matColumnDef="formato">
+        <th mat-header-cell *matHeaderCellDef>Formato</th>
+        <td mat-cell *matCellDef="let element">{{ element.formato }}</td>
+      </ng-container>
+
+      <!-- Digitalizador -->
+      <ng-container matColumnDef="digitalizador">
+        <th mat-header-cell *matHeaderCellDef>Digitalizador</th>
+        <td mat-cell *matCellDef="let element">{{ element.digitalizador }}</td>
+      </ng-container>
+
+      <!-- Fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef>Fecha Carga</th>
+        <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+      </ng-container>
+
+      <!-- 📁 Ubicación -->
+      <ng-container matColumnDef="ubicacion">
+        <th mat-header-cell *matHeaderCellDef>Ubicación</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn-ubicacion" (click)="abrirUbicacion(element)" title="Ver ubicación de la caja">
+            <fa-icon [icon]="faFolder"></fa-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Renderizado de columnas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </section>
+
+  <!-- 🪟 MODAL UBICACIÓN -->
+  <div class="modal-overlay" *ngIf="modalAbierto">
+    <div class="modal-content">
+      <h3>📦 Ubicación de la Caja</h3>
+
+      <div class="modal-info">
+        <p><strong>Almacén:</strong> {{ historiaSeleccionada.almacen }}</p>
+        <p><strong>Anaquel:</strong> {{ historiaSeleccionada.anaquel }}</p>
+        <p><strong>N° Caja:</strong> {{ historiaSeleccionada.numeroCaja }}</p>
+      </div>
+
+      <div class="modal-actions">
+        <button (click)="cerrarModal()" class="btn-cerrar">
+          Cerrar
+        </button>
+      </div>
+    </div>
   </div>
 
-  <div class="tabla-container">
-    <table class="tabla">
-      <thead>
-        <tr>
-          <th>Código QR</th>
-          <th>N° Caja</th>
-          <th>Estante</th>
-          <th>Columna</th>
-          <th>Nivel</th>
-          <th>Cliente</th>
-          <th>Sede</th>
-          <th>Área</th>
-          <th>Serie Documental</th>
-          <th>N° HC</th>
-          <th>Nombre Paciente</th>
-          <th>Tipo Archivo</th>
-          <th>Nombre Documento</th>
-          <th>Tipo de Archivo</th>
-          <th>Nombre del Archivo</th>
-          <th>Digitalizador</th>
-          <th>Fecha de Carga</th>
-          <th>Día</th>
-          <th>Mes</th>
-          <th>Año</th>
-          <th>Status</th>
-          <th>Tipo Error</th>
-          <th>Observaciones</th>
-          <th>Responsable de Revisión</th>
-          <th>Fecha de Revisión</th>
-          <th>Revisado (Sí/No)</th>
-          <th>Corregido (Sí/No)</th>
-          <th>Total de Producción</th>
-          <th>Muestra 3%</th>
-          <th>Porcentaje de Error (%)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>QR-0031</td>
-          <td>31</td>
-          <td>B</td>
-          <td>2</td>
-          <td>3</td>
-          <td>CJN</td>
-          <td>CLÍNICA JESÚS DEL NORTE</td>
-          <td>Archivo de Historias Clínicas</td>
-          <td>Historias Clínicas</td>
-          <td>4005120</td>
-          <td>MARÍA PÉREZ</td>
-          <td>Digital</td>
-          <td>CONSENTIMIENTO INFORMADO PARA APLICACION DE MEDICAMENTOS POR VIA INTRAMUSCULAR (IM) VIA ENDOVENOSA (EV) Y/O VIA SUBCUTANEA (SC)</td>
-          <td>PDF</td>
-          <td>HC_4005120.pdf</td>
-          <td>Juan Ramos</td>
-          <td>2025-02-05</td>
-          <td>05</td>
-          <td>02</td>
-          <td>2025</td>
-          <td>Correcto</td>
-          <td>—</td>
-          <td>Ninguna observación</td>
-          <td>Supervisor</td>
-          <td>2025-02-10</td>
-          <td>Sí</td>
-          <td>Sí</td>
-          <td>10000</td>
-          <td>300</td>
-          <td>0.001%</td>
-        </tr>
-        <tr>
-          <td>QR-0032</td>
-          <td>32</td>
-          <td>B</td>
-          <td>3</td>
-          <td>1</td>
-          <td>CJN</td>
-          <td>CLÍNICA JESÚS DEL NORTE</td>
-          <td>Archivo de Historias Clínicas</td>
-          <td>Historias Clínicas</td>
-          <td>4005189</td>
-          <td>LUIS TORRES</td>
-          <td>Digital</td>
-          <td>CONSENTIMIENTO INFORMADO PARA APLICACION DE MEDICAMENTOS POR VIA INTRAMUSCULAR (IM) VIA ENDOVENOSA (EV) Y/O VIA SUBCUTANEA (SC)</td>
-          <td>PDF</td>
-          <td>HC_4005189.pdf</td>
-          <td>Ana Salazar</td>
-          <td>2025-02-06</td>
-          <td>06</td>
-          <td>02</td>
-          <td>2025</td>
-          <td>Incorrecto</td>
-          <td>Documento ilegible</td>
-          <td>Escaneo repetido</td>
-          <td>Coordinador</td>
-          <td>2025-02-11</td>
-          <td>Sí</td>
-          <td>No</td>
-          <td>10000</td>
-          <td>300</td>
-          <td>0.002%</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>

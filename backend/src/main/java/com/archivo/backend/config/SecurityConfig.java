@@ -1,6 +1,5 @@
 package com.archivo.backend.config;
 
-
 import com.archivo.backend.jwt.JwtAuthenticationFilter;
 import com.archivo.backend.jwt.JwtEntryPoint;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 
@@ -28,8 +28,9 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/register", "/auth/roles", "/auth/sedes-nombres").permitAll()
-                        //.requestMatchers("/auth/register").hasRole("ADMIN")
+                        .requestMatchers("/auth/login", "/auth/register", "/auth/roles", "/auth/sedes-nombres")
+                        .permitAll()
+                        // .requestMatchers("/auth/register").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntryPoint()))
@@ -38,22 +39,22 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationFilter jwtTokenFilter(){
+    public JwtAuthenticationFilter jwtTokenFilter() {
         return new JwtAuthenticationFilter();
     }
 
     @Bean
-    public JwtEntryPoint jwtEntryPoint(){
+    public JwtEntryPoint jwtEntryPoint() {
         return new JwtEntryPoint();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of("http://localhost:4200"));

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SedeDto {
-    private Integer id;
-    private String nombre;
-    private String direccion;
+    private Integer id; // ID de la sede
+    private String nombre; // Nombre de la sede
+    private String direccion; // Dirección de la sede
 }

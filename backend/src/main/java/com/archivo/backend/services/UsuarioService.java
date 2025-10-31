@@ -1,6 +1,6 @@
 package com.archivo.backend.services;
 
-import com.archivo.backend.entities.NuevoUsuario;
+import com.archivo.backend.entities.Usuario;
 import com.archivo.backend.repositories.UsuarioRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,30 +12,36 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
-@NoArgsConstructor
 @Service
 public class UsuarioService implements UserDetailsService {
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+
+    // Inyección de dependencias usando el constructor o @Autowired
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String usuario) throws UsernameNotFoundException {
-        NuevoUsuario user = usuarioRepository.findByUsuario(usuario)
+        Usuario user = usuarioRepository.findByUsuario(usuario)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRol().getRoles().toString());
+
+        // CAMBIO CLAVE: Usamos getRoles() que coincide con la propiedad de la entidad
+        // Rol
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRol().getRoles());
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsuario(),
                 user.getContraseña(),
-                Collections.singleton(authority)
-        );
+                Collections.singleton(authority));
     }
 
-    public boolean existsByUsuario(String usuario){
+    public boolean existsByUsuario(String usuario) {
         return usuarioRepository.existsByUsuario(usuario);
     }
 
-    public void save(NuevoUsuario usuario){
+    public void save(Usuario usuario) {
         usuarioRepository.save(usuario);
     }
 }

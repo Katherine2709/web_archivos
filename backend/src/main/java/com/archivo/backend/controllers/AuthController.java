@@ -1,6 +1,5 @@
 package com.archivo.backend.controllers;
 
-
 import com.archivo.backend.dtos.*;
 import com.archivo.backend.entities.Sede;
 import com.archivo.backend.repositories.SedeRepository;
@@ -27,41 +26,42 @@ public class AuthController {
 
     // Constructor único para inyectar TODAS las dependencias
     public AuthController(AuthService authService,
-                          RoleRepository roleRepository, // Añadido
-                          SedeRepository sedeRepository) { // Añadido
+            RoleRepository roleRepository, // Añadido
+            SedeRepository sedeRepository) { // Añadido
         this.authService = authService;
         this.roleRepository = roleRepository; // Asignación
         this.sedeRepository = sedeRepository; // Asignación: SOLUCIÓN
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginUserDto loginUserDto, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ResponseEntity<String> login(@Valid @RequestBody LoginUserDto loginUserDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body("Revise sus credenciales");
         }
         try {
             String jwt = authService.authenticate(loginUserDto.getUsuario(), loginUserDto.getContraseña());
             return ResponseEntity.ok(jwt);
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody NuevoUsuarioDto NuevoUsuarioDto, BindingResult bindingResult){
-        if (bindingResult.hasErrors()){
+    public ResponseEntity<String> register(@Valid @RequestBody NuevoUsuarioDto NuevoUsuarioDto,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body("Revise los campos");
         }
         try {
             authService.registerUser(NuevoUsuarioDto);
             return ResponseEntity.status(HttpStatus.CREATED).body("Registrado");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/check-auth")
-    public ResponseEntity<String> checkAuth(){
+    public ResponseEntity<String> checkAuth() {
         return ResponseEntity.ok().body("Autenticado");
     }
 
@@ -71,7 +71,7 @@ public class AuthController {
         List<RoleDto> dtos = roles.stream().map(r -> {
             RoleDto dto = new RoleDto();
             dto.setId(r.getId());
-            dto.setRoles(r.getRoles());
+            dto.setRoles(r.getRoles()); // Cambiado a 'getRol()'
             return dto;
         }).toList();
         return ResponseEntity.ok(dtos);
