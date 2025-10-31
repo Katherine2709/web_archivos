@@ -25,12 +25,12 @@ public class AuthService {
     // Asumo que 'ClienteRepository' debería ser 'UsuarioRepository' o que su
     // 'ClienteRepository'
     // maneja la entidad Usuario. Mantendré el nombre original por ahora.
-    private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final RoleRepository roleRepository;
     private final SedeRepository sedeRepository;
+    private final UsuarioRepository usuarioRepository;
     private final AreaInternaRepository areaInternaRepository;
 
     public AuthService(UsuarioService usuarioService, RoleRepository roleRepository, SedeRepository sedeRepository,
@@ -40,7 +40,7 @@ public class AuthService {
         this.usuarioService = usuarioService;
         this.roleRepository = roleRepository;
         this.sedeRepository = sedeRepository;
-        this.usuarioRepository = usuarioRepository; // Uso aquí 'usuarioRepository'
+        this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.authenticationManagerBuilder = authenticationManagerBuilder;

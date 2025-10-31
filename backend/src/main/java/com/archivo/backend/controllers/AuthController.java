@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.archivo.backend.repositories.RoleRepository;
 import com.archivo.backend.entities.Rol;
 
@@ -21,16 +20,16 @@ import java.util.List;
 public class AuthController {
 
     private final AuthService authService;
-    private final RoleRepository roleRepository; // Ahora final
-    private final SedeRepository sedeRepository; // Ahora final
+    private final RoleRepository roleRepository;
+    private final SedeRepository sedeRepository; 
 
     // Constructor único para inyectar TODAS las dependencias
     public AuthController(AuthService authService,
-            RoleRepository roleRepository, // Añadido
-            SedeRepository sedeRepository) { // Añadido
+            RoleRepository roleRepository, 
+            SedeRepository sedeRepository) {
         this.authService = authService;
-        this.roleRepository = roleRepository; // Asignación
-        this.sedeRepository = sedeRepository; // Asignación: SOLUCIÓN
+        this.roleRepository = roleRepository;
+        this.sedeRepository = sedeRepository; 
     }
 
     @PostMapping("/login")

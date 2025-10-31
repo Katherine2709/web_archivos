@@ -33,9 +33,9 @@ export class StorieSearchComponent {
       formato: 'PDF',
       digitalizador: 'Ana Torres',
       fecha: '2025-10-15',
-      almacen: 'A1',
-      anaquel: '3',
-      numeroCaja: '12'
+      almacen: 'Lurin',
+      anaquel: '3A',
+      numeroCaja: '0010'
     },
     {
       historia: 'HC-002',
@@ -45,9 +45,9 @@ export class StorieSearchComponent {
       formato: 'JPG',
       digitalizador: 'Carlos Vega',
       fecha: '2025-10-12',
-      almacen: 'B2',
-      anaquel: '1',
-      numeroCaja: '8'
+      almacen: 'Lurin',
+      anaquel: 'V1',
+      numeroCaja: '0020'
     },
     {
       historia: 'HC-003',
@@ -57,9 +57,9 @@ export class StorieSearchComponent {
       formato: 'PDF',
       digitalizador: 'Sofía Ramos',
       fecha: '2025-10-13',
-      almacen: 'C1',
-      anaquel: '2',
-      numeroCaja: '5'
+      almacen: 'Jesus del Norte',
+      anaquel: 'C2',
+      numeroCaja: '0030'
     }
   ];
 
