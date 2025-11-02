@@ -37,12 +37,12 @@ Solución integral desarrollada con **Spring Boot (Backend) y Angular (Frontend)
 
 | **Categoría**       | **Tecnologías**                                                                 |  
 |----------------------|---------------------------------------------------------------------------------|  
-| **Frontend**         | Angular 16, TypeScript, HTML5/CSS3, Bootstrap 5                                |  
-| **Backend**          | Spring Boot 3 (Java 17), Spring Security, JPA/Hibernate                        |  
+| **Frontend**         | Angular 19, TypeScript, HTML5/CSS                                              |  
+| **Backend**          | Spring Boot 3 (Java 21), Spring Security, JPA/Hibernate                        |  
 | **Base de Datos**    | PostgreSQL / MySQL                                                             |  
 | **Escaneo**          | ZXing (QR/barras), Google ML Kit (OCR)                                         |  
 | **Documentación**    | Swagger (OpenAPI 3.0), Javadoc                                                 |  
-| **DevOps**           | Docker, GitHub Actions (CI/CD)                                                 |  
+| **DevOps**           | GitHub Actions (CI/CD)                                                         |  
 
 ---
 <p align="center"> <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white" alt="Spring Boot"> <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular"> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"> <img src="https://img.shields.io/badge/Google%20ML%20Kit-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google ML Kit"> </p>
