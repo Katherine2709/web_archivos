@@ -9,6 +9,7 @@ import { StorieLoansComponent } from './pages/Storie/storie-loans/storie-loans.c
 import { StorieMovesComponent } from './pages/Storie/storie-moves/storie-moves.component';
 import { StorieReturnsComponent } from './pages/Storie/storie-returns/storie-returns.component';
 import { StorieSearchComponent } from './pages/Storie/storie-search/storie-search.component';
+import { DataExchangeComponent } from './pages/data-exchange/data-exchange/data-exchange.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
             { path: 'storie-moves', component: StorieMovesComponent },
             { path: 'storie-returns', component: StorieReturnsComponent },
             { path: 'storie-search', component: StorieSearchComponent },
+            { path: 'data-exchange', component: DataExchangeComponent},
             { path: '', redirectTo: 'staffreg', pathMatch: 'full' },
             { path: '**', component: NotFoundComponent }
         ]

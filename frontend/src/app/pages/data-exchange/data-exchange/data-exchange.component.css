@@ -1,0 +1,242 @@
+/* src/app/data-exchange/data-exchange.component.css */
+
+/* Variables para colores (sin cambios) */
+:root {
+    --primary-color: #007bff; 
+    --secondary-color: #6c757d; 
+    --data-export-color: #17a2b8; 
+    --success-color: #28a745; 
+    --warning-color: #ffc107; 
+    --danger-color: #dc3545; 
+    --border-color: #dee2e6;
+    --background-light: #f8f9fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.data-exchange-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+h2, h3 {
+    color: #343a40;
+    margin-bottom: 15px;
+}
+
+/* Estilo general de las secciones/tarjetas (sin cambios) */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: var(--card-shadow);
+}
+/* ... (El resto de estilos de contenedores y texto son iguales) ... */
+
+/* --- Botones --- */
+
+/* Centrado de botones en su contenedor (sin cambios) */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center; 
+}
+
+.export-group {
+    margin-top: 15px; 
+    padding-top: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease; 
+}
+
+/* 🚀 AJUSTE CRÍTICO: FORZANDO VISIBILIDAD CON !important */
+
+.btn-primary {
+    background-color: rgb(1, 111, 255);
+    color: white;
+}
+
+.btn-primary:hover:not([disabled]) {
+    background-color: rgb(1, 111, 255);
+}
+
+.export-data-btn {
+    /* Forzamos el color de fondo */
+    background-color: rgb(1, 111, 255);
+    /* Forzamos el color de texto */
+    color: white; 
+}
+
+.export-data-btn:hover:not([disabled]) {
+    background-color: #004f8b;
+}
+
+.btn-secondary {
+    /* Forzamos el color de fondo */
+    background-color: rgb(1, 111, 255);
+    /* Forzamos el color de texto */
+    color: white;
+}
+
+.btn-secondary:hover:not([disabled]) {
+    background-color: #004f8b;
+}
+
+.btn-primary[disabled], .btn-secondary[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-download {
+    background: none;
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border: 1px solid var(--primary-color);
+    font-size: 0.9em;
+}
+.btn-download:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ----------------------------------------------------- */
+/* --- EL RESTO DE LOS ESTILOS (MARCO, TABLA, ALERTAS) --- */
+/* ----------------------------------------------------- */
+
+/* ESTILO PARA EL MARCO DE CARGA MEJORADO */
+.bordered-box {
+    border: 1px solid #ced4da; /* Borde sólido */
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.bordered-box h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #495057;
+    border-bottom: 1px dashed #e9ecef;
+    padding-bottom: 5px;
+    font-size: 1.1em;
+}
+
+/* --- ZONA DE CARGA (Dropzone) --- */
+.file-drop-area {
+    border: 3px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    background-color: var(--background-light);
+}
+
+.file-drop-area:hover {
+    border-color: var(--primary-color);
+}
+
+.drop-label {
+    display: block;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.selected-file-name {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+/* --- Alertas de Mensaje (sin cambios) --- */
+.alert {
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border-left: 5px solid;
+    font-weight: bold;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+/* --- Tabla de Historial (sin cambios) --- */
+.table-scroll {
+    overflow-x: auto; 
+}
+
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.transaction-table th, .transaction-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.transaction-table th {
+    background-color: var(--background-light);
+    color: #495057;
+    font-weight: 600;
+}
+
+.transaction-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.no-records {
+    text-align: center;
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+/* --- Etiquetas de Estado (Badges) (sin cambios) --- */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status-partial {
+    background-color: var(--warning-color);
+    color: #343a40; 
+}
+
+.status-failure {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.status-pending {
+    background-color: var(--secondary-color);
+    color: white;
+}

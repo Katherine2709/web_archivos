@@ -1,1 +1,109 @@
-<p>data-exchange works!</p>
+<div class="data-exchange-container">
+    <h2>📂 Gestor Registros Clinicos</h2>
+
+    <section class="upload-section card">
+        <h3>1. Cargar Archivo Clínico (Importación)</h3>
+        
+        <p *ngIf="errorMessage" class="alert error">{{ errorMessage }}</p>
+        <p *ngIf="uploadMessage" class="alert success">{{ uploadMessage }}</p>
+
+        <div class="file-drop-area bordered-box"> 
+            <input type="file" id="fileInput" (change)="onFileSelected($event)" accept=".xlsx, .xls" style="display: none;">
+            
+            <label for="fileInput" class="drop-label">
+                <span *ngIf="!selectedFile">
+                    Arrastra tu archivo Excel aquí o haz clic aquí para buscar.
+                </span>
+                <span *ngIf="selectedFile" class="selected-file-name">
+                    ✅ Archivo listo: {{ selectedFile.name }}
+                </span>
+            </label>
+        </div>
+
+        <div class="action-buttons import-group">
+            <button 
+                (click)="uploadFile()" 
+                [disabled]="!selectedFile || isLoading"
+                class="btn-primary"
+            >
+                <span *ngIf="!isLoading">Iniciar Carga</span>
+                <span *ngIf="isLoading">Procesando...</span>
+            </button>
+            </div>
+    </section>
+
+    <hr>
+
+    <section class="export-section card">
+        <h3>Exportación de Datos</h3>
+        <p>Selecciona el tipo de información que deseas descargar en formato Excel:</p>
+
+        <div class="action-buttons export-group">
+            <button (click)="exportHistoryLog()" class="btn-secondary">
+                Exportar Historial de Registros
+            </button>
+
+            <button (click)="exportClinicalData()" class="btn-primary export-data-btn">
+                Exportar Datos Clínicos
+            </button>
+        </div>
+    </section>
+
+    <hr>
+    
+    <section class="history-section card">
+        <h3>Historial de Registros</h3>
+        <div class="table-scroll">
+            <table class="transaction-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Archivo</th>
+                        <th>Usuario</th>
+                        <th>Registros</th>
+                        <th>Estado</th>
+                        <th>Resultados</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let record of history">
+                        <td>{{ record.uploadDate | date: 'medium' }}</td>
+                        <td>{{ record.fileName }}</td>
+                        <td>{{ record.uploadedBy }}</td>
+                        <td>{{ record.totalRecords }}</td>
+                        
+                        <td>
+                            <span [ngClass]="{'status-success': record.status === 'EXITO', 'status-partial': record.status === 'FALLO_PARCIAL', 'status-failure': record.status === 'FALLO_TOTAL', 'status-pending': record.status === 'EN_PROCESO'}" class="status-badge">
+                                {{ record.status }}
+                            </span>
+                        </td>
+                        
+                        <td>
+                            <span *ngIf="record.status !== 'EN_PROCESO'">
+                                ✔️ {{ record.successRecords }} / ❌ {{ record.errorRecords }}
+                            </span>
+                            <span *ngIf="record.status === 'EN_PROCESO'">
+                                Esperando...
+                            </span>
+                        </td>
+
+                        <td>
+                            <button 
+                                *ngIf="record.errorFileAvailable && record.status !== 'EN_PROCESO'" 
+                                (click)="downloadErrorFile(record.id, record.fileName)" 
+                                class="btn-download"
+                            >
+                                ⬇️ Errores
+                            </button>
+                            <span *ngIf="!record.errorFileAvailable && record.status === 'EXITO'">Sin errores</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="history.length === 0">
+                        <td colspan="7" class="no-records">No hay registros de transacciones.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
