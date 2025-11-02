@@ -12,5 +12,6 @@ export interface TransactionRecord {
   successRecords: number; // Registros procesados correctamente
   errorRecords: number; // Registros que tuvieron errores
   status: 'EXITO' | 'FALLO_PARCIAL' | 'FALLO_TOTAL' | 'EN_PROCESO'; // Estado de la transacción
+  
   errorFileAvailable: boolean; // Indica si hay un archivo de errores para descargar
 }

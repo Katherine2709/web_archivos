@@ -24,6 +24,7 @@ export const routes: Routes = [
             { path: 'storie-returns', component: StorieReturnsComponent },
             { path: 'storie-search', component: StorieSearchComponent },
             { path: 'data-exchange', component: DataExchangeComponent},
+            
             { path: '', redirectTo: 'staffreg', pathMatch: 'full' },
             { path: '**', component: NotFoundComponent }
         ]

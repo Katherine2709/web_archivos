@@ -11,6 +11,7 @@ export class DataExchangeService {
   private http = inject(HttpClient);
   // URL base de tu backend de Spring Boot
   private apiUrl = 'http://localhost:8080/api/files'; 
+  
 
   /**
    * 📤 Envía el archivo Excel al backend para su procesamiento.

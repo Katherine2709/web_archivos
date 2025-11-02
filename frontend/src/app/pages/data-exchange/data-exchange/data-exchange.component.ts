@@ -66,6 +66,7 @@ export class DataExchangeComponent implements OnInit {
     }
   }
 
+  
   /**
    * Inicia el proceso de carga del archivo al servidor.
    */
